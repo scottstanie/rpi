@@ -1,13 +1,12 @@
-# Smmrizr Summaries GUI
-Approving/blacklisting/deleting summaries
+# Server running on raspberry pi
 
 # Instructions
 
-[![Docker Repository on Quay Enterprise](https://registry.cogolo.net/repository/shrimp/signoff/status "Docker Repository on Quay Enterprise")](https://registry.cogolo.net/repository/shrimp/signoff)
+    sudo pip install -r requirements.txt
+    sudo python app.py
 
-run:
-pip install -r requirements.txt
-python app.py
+Find the IP of your raspberry pi and enter it into your browser:
 
-go to:
-localhost:5000
+    scott$ nmap -sP 192.168.0.*
+
+
