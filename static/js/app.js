@@ -1,5 +1,8 @@
 $(document).ready(function() {
   console.log('Ready');
+  $("#up").on('click', function() {
+    var $speed = $('#speed').val()
+  }
 
 })
 
