@@ -2,6 +2,19 @@
 {% extends "layout.html" %}
 {% block body %}
 <h1>Hey</h1>
+<i id="stop" class="fa fa-stop fa-6" aria-hidden="true"></i>
+<i id="up" class="fa fa-arrow-up fa-6" aria-hidden="true"></i>
+<i id="down" class="fa fa-arrow-down fa-6" aria-hidden="true"></i>
 
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Speed (up 0 to 255)...">
+      <span class="input-group-btn">
+        <button id="speed" class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
 
 {% endblock %}
