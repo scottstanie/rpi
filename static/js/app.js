@@ -23,19 +23,23 @@ $(document).ready(function() {
       fired = true;
       switch(e.which) {
           case 37: // left
-          sendMove('left', $speed)
+            $('#left').addClass('active')
+            sendMove('left', $speed)
           break;
 
           case 38: // up
-          sendMove('up', $speed)
+            $('#up').addClass('active')
+            sendMove('up', $speed)
           break;
 
           case 39: // right
-          sendMove('right', $speed)
+            $('#right').addClass('active')
+            sendMove('right', $speed)
           break;
 
           case 40: // down
-          sendMove('down', $speed)
+            $('#down').addClass('active')
+            sendMove('down', $speed)
           break;
 
           default: return; // exit this handler for other keys
@@ -47,6 +51,7 @@ $(document).ready(function() {
   $(document).on("keyup", function (e) {
     if (fired) {
       fired = false;
+      $('.arrow').removeClass('active');  // Uncolor all arrows
       sendMove('stop', $speed);
       e.preventDefault(); // prevent the default action (scroll / move caret)
     }
