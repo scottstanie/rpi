@@ -1,12 +1,18 @@
 $(document).ready(function() {
   console.log('Ready');
-  $("#up").on('click', function() {
-    var $speed = $('#speed').val()
-  }
+  $(".arrow").on('mousedown vmousedown touchstart', function() {
+    $(this).addClass('active');
+    sendMove($(this).attr('id'));
+  })
+
+  $(".arrow").on('mouseup vmouseup mouseout touchend', function() {
+    $(this).removeClass('active');
+    sendMove('stop');
+  })
 
 })
 
-function fetch_new_results(first_id) {
+function sendMove(direction) {
   $.ajax('/update_results', {
       type: 'GET',
       contentType: 'application/json',

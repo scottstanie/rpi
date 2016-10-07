@@ -1,6 +1,11 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
+.active {
+  background-color: green;
+}
+
 body {
-  background: white; 
+  background: white;
   margin: 0 auto;
   max-width: 50em;
   line-height: 1.5;
@@ -18,8 +23,8 @@ strong {
   color: #333;
 }
 
-div.breaker { 
-  clear: both; 
+div.breaker {
+  clear: both;
 }
 
 h2 {
@@ -42,13 +47,13 @@ header {
   text-align: center;
 }
 
-img { 
-  border: none; 
-  vertical-align: bottom; 
+img {
+  border: none;
+  vertical-align: bottom;
 }
 
-hr { 
-  height: 1px; 
-  border: none; 
-  background-color: #ddd; 
+hr {
+  height: 1px;
+  border: none;
+  background-color: #ddd;
 }

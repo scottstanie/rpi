@@ -1,20 +1,54 @@
 
 {% extends "layout.html" %}
 {% block body %}
-<h1>Hey</h1>
-<i id="stop" class="fa fa-stop fa-6" aria-hidden="true"></i>
-<i id="up" class="fa fa-arrow-up fa-6" aria-hidden="true"></i>
-<i id="down" class="fa fa-arrow-down fa-6" aria-hidden="true"></i>
 
-<div class="row">
-  <div class="col-lg-6">
-    <div class="input-group">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <i id="stop" class="fa fa-stop fa-5x hidden" ></i>
+    </div>
+    <div class="col-xs-3">
+      <i id="up" class="arrow fa fa-arrow-up fa-5x" ></i>
+    </div>
+    <div class="col-xs-3">
+      <i id="stop" class="fa fa-stop fa-5x hidden" ></i>
+    </div>
+  </div><!-- /.row -->
+
+  <div class="row">
+    <div class="col-xs-3">
+      <i id="left" class="arrow fa fa-arrow-left fa-5x" ></i>
+    </div>
+    <div class="col-xs-3">
+      <i id="stop" class="fa fa-stop fa-5x hidden" ></i>
+    </div>
+        <div class="col-xs-3">
+      <i id="right" class="arrow fa fa-arrow-right fa-5x" ></i>
+    </div>
+  </div><!-- /.row -->
+
+  <div class="row">
+    <div class="col-xs-3">
+      <i id="stop" class="fa fa-stop fa-5x hidden" ></i>
+    </div>
+    <div class="col-xs-3">
+      <i id="down" class="arrow fa fa-arrow-down fa-5x" ></i>
+    </div>
+    <div class="col-xs-3">
+      <i id="stop" class="fa fa-stop fa-5x hidden" ></i>
+    </div>
+  </div><!-- /.row -->
+</div>
+
+<h1>Go</h1>
+<i class="fa fa-camera-retro fa-5x"></i>
+<i class="fa fa-car fa-5x"></i>
+
+{% endblock %}
+
+    <!-- <div class="input-group">
       <input type="text" class="form-control" placeholder="Speed (up 0 to 255)...">
       <span class="input-group-btn">
         <button id="speed" class="btn btn-default" type="button">Go!</button>
       </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-
-{% endblock %}
+    </div> -->
