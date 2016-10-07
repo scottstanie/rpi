@@ -17,6 +17,41 @@ $(document).ready(function() {
     sendMove('stop', $speed);
   })
 
+  var fired = false;
+  $(document).on("keydown", function (e) {
+    if (!fired) {
+      fired = true;
+      switch(e.which) {
+          case 37: // left
+          sendMove('left', $speed)
+          break;
+
+          case 38: // up
+          sendMove('up', $speed)
+          break;
+
+          case 39: // right
+          sendMove('right', $speed)
+          break;
+
+          case 40: // down
+          sendMove('down', $speed)
+          break;
+
+          default: return; // exit this handler for other keys
+      }
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+  });
+
+  $(document).on("keyup", function (e) {
+    if (fired) {
+      fired = false;
+      sendMove('stop', $speed);
+      e.preventDefault(); // prevent the default action (scroll / move caret)
+    }
+  });
+
 })
 
 function sendMove(direction, speed) {

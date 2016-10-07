@@ -51,7 +51,7 @@ def move():
     speed_num = speeds[speed]
     print speed_num, direction
     # ROBOT_FUNCTIONS[direction](speed_num)
-    return jsonify({'response': 'OK'})
+    return jsonify({'direction': direction, 'speed': speed})
 
 
 if __name__ == '__main__':
