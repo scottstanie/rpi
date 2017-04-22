@@ -28,8 +28,8 @@ RIGHT_TRIM = 0
 #  - right_id: The ID of the right motor, default is 2.
 robot = Robot.Robot(left_trim=LEFT_TRIM, right_trim=RIGHT_TRIM)
 ROBOT_FUNCTIONS = {
-    'up': robot.forward,
-    'down': robot.backward,
+    'forward': robot.forward,
+    'backward': robot.backward,
     'left': robot.left,
     'right': robot.right,
     'stop': robot.stop

@@ -29,7 +29,7 @@ $(document).ready(function() {
 
           case 38: // up
             $('#up').addClass('active')
-            sendMove('up', $speed)
+            sendMove('forward', $speed)
           break;
 
           case 39: // right
@@ -39,7 +39,7 @@ $(document).ready(function() {
 
           case 40: // down
             $('#down').addClass('active')
-            sendMove('down', $speed)
+            sendMove('backward', $speed)
           break;
 
           default: return; // exit this handler for other keys
