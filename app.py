@@ -1,11 +1,10 @@
 from __future__ import unicode_literals
-# import json
-# import requests
 import os
 from flask import Flask, render_template, jsonify, request
+from playsound import playsound
 
-# import time
-# import atexit
+import time
+import atexit
 
 # from Adafruit_MotorHAT import Adafruit_MotorHAT
 from examples import Robot
@@ -13,30 +12,6 @@ from examples import Robot
 
 from boto3 import Session
 # from botocore.exceptions import ClientError
-
-session = Session(
-    aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
-    aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
-    region_name='us-east-1',
-)
-polly = session.client("polly")
-
-
-def _synth_speech(input_text, voice='Amy'):
-    response = polly.synthesize_speech(
-        OutputFormat='mp3',
-        Text=input_text,
-        TextType='text',
-        VoiceId=voice
-    )
-    return response['AudioStream']
-
-
-def create_mp3(message):
-    speech_stream = _synth_speech(message)
-    with open('message.mp3', 'w') as f:
-        f.write(speech_stream.read())
-
 
 # configuration
 DEBUG = True
@@ -64,6 +39,45 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 
+session = Session(
+    aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
+    region_name='us-east-1',
+)
+polly = session.client("polly")
+
+
+def _synth_speech(input_text, voice='Amy'):
+    response = polly.synthesize_speech(
+        OutputFormat='mp3',
+        Text=input_text,
+        TextType='text',
+        VoiceId=voice
+    )
+    return response['AudioStream']
+
+
+def create_mp3(message, filepath="message.mp3"):
+    speech_stream = _synth_speech(message)
+    with open(filepath, 'w') as f:
+        f.write(speech_stream.read())
+
+
+@app.route('/speak', methods=['POST'])
+def speak():
+    data = request.get_json()
+    message = data['message'].lower()
+    try:
+        filepath = "message.mp3"
+        # Convert the mp3 with Polly and save as file
+        create_mp3(message, filepath)
+        # Play the mp3 from saved file
+        playsound('message.mp3')
+        return jsonify({"OK": True})
+    except Exception as e:
+        return jsonify({"OK": False, "exception": e})
+
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
@@ -81,17 +95,6 @@ def move():
     print "speed:", speed_num, "direction:", direction, "duration:", duration
     ROBOT_FUNCTIONS[direction](speed_num, duration)
     return jsonify({'direction': direction, 'speed': speed})
-
-
-@app.route('/speech', methods=['POST'])
-def speech():
-    data = request.get_json()
-    message = data['message'].lower()
-    try:
-        create_mp3(message)
-        return jsonify({"OK": True})
-    except Exception as e:
-        return jsonify({"OK": False, "exception": e})
 
 
 if __name__ == '__main__':
