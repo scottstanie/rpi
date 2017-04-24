@@ -93,7 +93,10 @@ def move():
     speeds = {'fast': 250, 'slow': 125}
     speed_num = speeds[speed]
     print "speed:", speed_num, "direction:", direction, "duration:", duration
-    ROBOT_FUNCTIONS[direction](speed_num, duration)
+    if direction == 'stop':
+        ROBOT_FUNCTIONS[direction]()
+    else:
+        ROBOT_FUNCTIONS[direction](speed_num, duration)
     return jsonify({'direction': direction, 'speed': speed})
 
 
