@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 import os
+import subprocess
 from flask import Flask, render_template, jsonify, request
-import vlc
 
 import time
 import atexit
@@ -72,9 +72,8 @@ def speak():
         # Convert the mp3 with Polly and save as file
         create_mp3(message, filepath)
         # Play the mp3 from saved file
-        playsound('message.mp3')
-        p = vlc.MediaPlayer("message.mp3")
-        p.play()
+        subprocess.check_call("omxplayer", "message.mp3")
+
         return jsonify({"OK": True})
     except Exception as e:
         return jsonify({"OK": False, "exception": e})
