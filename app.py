@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 import os
 from flask import Flask, render_template, jsonify, request
-from playsound import playsound
+import vlc
 
 import time
 import atexit
@@ -73,6 +73,8 @@ def speak():
         create_mp3(message, filepath)
         # Play the mp3 from saved file
         playsound('message.mp3')
+        p = vlc.MediaPlayer("message.mp3")
+        p.play()
         return jsonify({"OK": True})
     except Exception as e:
         return jsonify({"OK": False, "exception": e})
